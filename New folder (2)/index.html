@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Designer | Supu Sapkota</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+            color: #1e1e1e;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 1s ease forwards;
+        }
+
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: #007aff;
+            width: 0;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+
+
+            padding: 7rem 2rem 5rem;
+            /* Added top space */
+            text-align: center;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            color: #444;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-top: 2rem;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: auto;
+            animation: fadeIn 1.5s ease;
+        }
+
+        #scroll-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: #007aff;
+            z-index: 9999;
+            transition: width 0.25s ease-out;
+        }
+
+        h3 {
+            font-size: 2rem;
+            color: #1e1e1e;
+            margin-bottom: 1rem;
+            border-left: 4px solid #007aff;
+            padding-left: 1rem;
+        }
+
+        .projects,
+        .skills,
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            z-index: 1;
+            min-height: 220px;
+            text-decoration: none;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--bg-img);
+            background-size: cover;
+            background-position: center;
+            filter: blur(6px) brightness(0.6);
+            z-index: -1;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scale(1.05);
+        }
+
+        .project-card h4,
+        .project-card p {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" style="text-decoration: none; color: #333; font-size: 1.8rem; font-weight: 700;">Supu Sapkota</a>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        });
+    </script>
+
+
+    <section class="hero">
+        <h2>Hello, I'm a UI/UX Designer</h2>
+        <p>Designing beautiful and functional experiences that bridge users with technology. Passionate about
+            human-centered design and solving real-world problems with creativity and logic.</p>
+        <img src="profile1.png" alt="Profile image of UI/UX Designer Er. Sapkota" class="profile-img">
+    </section>
+
+    <section id="about">
+        <h3>About Me</h3>
+        <p>As a Computer Engineering student at Pokhara University, I am passionately transitioning into the
+            world of UI/UX.I blend technical understanding with creativity to design clean, user-friendly digital
+            experiences using tools like Figma and Canva.
+            I’m always learning—exploring design thinking, UX research, and front-end basics to better understand how
+            design impacts real users.</p>
+    </section>
+
+    <section id="projects">
+        <h3>Projects</h3>
+        <div class="projects">
+            <a href="https://www.figma.com/design/ErAiaeGBLUQrk7VbpUx7oL/project-canva?node-id=0-1" target="_blank"
+                class="card project-card" data-bg="canva.png">
+                <h4>Design Tool Prototype Inspired by Canva</h4>
+                <p>An intuitive and visually appealing tool that helps users easily design creatives.</p>
+            </a>
+            <a href="https://www.figma.com/design/hlFJTLJv6KEZoCdhmCwJXg/assignment?node-id=119-3" target="_blank"
+                class="card project-card" data-bg="dashboard.png">
+                <h4>Secure Insights Dashboard</h4>
+                <p>Designed a user-friendly dashboard for a security platform displaying findings across assets.</p>
+            </a>
+        </div>
+    </section>
+
+
+
+    <section id="skills">
+        <h3>Skills</h3>
+        <div class="skills">
+            <div class="card">Figma,canva & Adobe XD</div>
+            <div class="card">HTML, CSS, JS</div>
+            <div class="card">User Psychology</div>
+            <div class="card">Responsive Design</div>
+            <div class="card">Human-Computer Interaction: The Foundations of UX Design</div>
+            <div class="card">AI for Designers</div>
+            <div class="card">visual-design-the-ultimate-guide</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h3>Contact Me</h3>
+        <div class="contact">
+            <div class="card">
+                <p>Email: <strong>samagya.sap@gmail.com</strong></p>
+                <p>LinkedIn:<strong><a href="https://www.linkedin.com/in/supusapkota"
+                            target="_blank">www.linkedin.com/in/supusapkota</strong></a></p>
+                <p>Location: Nepal (Open to Remote & International Roles)</p>
+            </div>
+        </div>
+    </section>
+    <div id="scroll-bar"></div>
+
+    <footer>
+        &copy; 2025@Sapkota Designed with ❤️ and JavaScript.
+    </footer>
+    <script>
+        document.querySelectorAll('.project-card').forEach(card => {
+            const imageUrl = card.getAttribute('data-bg');
+            card.style.setProperty('--bg-img', `url('${imageUrl}')`);
+        });
+    </script>
+
+</body>
+
+</html>
